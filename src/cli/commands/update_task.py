@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from typing import Optional
 
 from ...core.task.exceptions import TaskNotFoundError, TaskPersistenceError, TaskValidationError

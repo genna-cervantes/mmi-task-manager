@@ -3,15 +3,23 @@ name = "mmi"
 version = "0.1.0"
 description = "CLI Task Manager"
 authors = [
-    {name = "genna-cervantes",email = "gennacervantes9@gmail.com"}
+    { name = "genna-cervantes", email = "gennacervantes9@gmail.com" },
 ]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "pymongo (>=4.15.5,<5.0.0)"
+    "pymongo>=4.15.5,<5.0.0",
 ]
 
+[project.scripts]
+mmi = "cli.main:main"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

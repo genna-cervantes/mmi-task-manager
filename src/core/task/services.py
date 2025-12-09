@@ -3,10 +3,10 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Iterable, List, Optional
 
+from pymongo import ReturnDocument
 from pymongo.collection import Collection
 
 from .models import PriorityLevel, Status, Task
-
 
 class TaskService:
     """
@@ -122,7 +122,7 @@ class TaskService:
         result = self._collection.find_one_and_update(
             {"_id": task_id},
             {"$set": updates},
-            return_document=True, 
+            return_document=ReturnDocument.AFTER,
         )
         return self._deserialize(result) if result else None
 

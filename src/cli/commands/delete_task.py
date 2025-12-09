@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import sys
 
 from ...core.task.exceptions import TaskNotFoundError, TaskPersistenceError
 from ...core.task.manager import TaskManager

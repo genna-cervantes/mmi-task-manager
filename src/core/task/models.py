@@ -112,14 +112,3 @@ class Task:
             raise TaskValidationError("Cannot start a task that is already completed.")
         self.status = Status.IN_PROGRESS
 
-    def is_overdue(self, reference: Optional[datetime] = None) -> bool:
-        """
-        Return True if the task has a due date in the past and is not completed.
-        """
-        if self.due_date is None:
-            return False
-        if self.status == Status.COMPLETED:
-            return False
-        reference = reference or datetime.utcnow()
-        return self.due_date < reference
-

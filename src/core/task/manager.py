@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Iterable, List, Optional
 
+from pymongo.errors import PyMongoError
+
 from .exceptions import (
     TaskNotFoundError,
     TaskPersistenceError,
@@ -45,7 +47,7 @@ class TaskManager:
 
         try:
             return self._service.create_task(task)
-        except Exception as exc:  # pragma: no cover - defensive
+        except PyMongoError as exc:  # pragma: no cover - defensive
             raise TaskPersistenceError(f"Failed to create task: {exc}") from exc
 
     def create_tasks_bulk(
@@ -82,7 +84,7 @@ class TaskManager:
 
         try:
             return self._service.create_tasks_bulk(tasks)
-        except Exception as exc:
+        except PyMongoError as exc:
             raise TaskPersistenceError(f"Failed to bulk-create tasks: {exc}") from exc
 
     def get_task(self, task_id: str) -> Task:
@@ -94,7 +96,7 @@ class TaskManager:
         """
         try:
             task = self._service.get_task(task_id)
-        except Exception as exc:  # pragma: no cover - defensive
+        except PyMongoError as exc:  # pragma: no cover - defensive
             raise TaskPersistenceError(f"Failed to fetch task {task_id!r}: {exc}") from exc
 
         if task is None:
@@ -119,7 +121,7 @@ class TaskManager:
                 priority=priority,
                 due_date=due_date,
             )
-        except Exception as exc:  # pragma: no cover - defensive
+        except PyMongoError as exc:  # pragma: no cover - defensive
             raise TaskPersistenceError(f"Failed to list tasks: {exc}") from exc
 
     def update_task(
@@ -168,7 +170,7 @@ class TaskManager:
                 priority_level=priority_level,
                 status=status,
             )
-        except Exception as exc: 
+        except PyMongoError as exc:
             raise TaskPersistenceError(f"Failed to update task {task_id!r}: {exc}") from exc
 
         if updated is None:
@@ -186,7 +188,7 @@ class TaskManager:
         """
         try:
             updated = self._service.update_task(task_id, status=Status.COMPLETED)
-        except Exception as exc:
+        except PyMongoError as exc:
             raise TaskPersistenceError(
                 f"Failed to mark task {task_id!r} as completed: {exc}"
             ) from exc
@@ -206,7 +208,7 @@ class TaskManager:
         """
         try:
             deleted = self._service.delete_task(task_id)
-        except Exception as exc:
+        except PyMongoError as exc:
             raise TaskPersistenceError(f"Failed to delete task {task_id!r}: {exc}") from exc
 
         if not deleted:
