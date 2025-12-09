@@ -1,18 +1,4 @@
 from __future__ import annotations
-
-"""
-MongoDB connection utilities for the CLI Task Manager.
-
-This module centralises creation of the `MongoClient` and access to the
-application database/collections so that the rest of the codebase does not
-need to know about connection details.
-
-Environment variables (all optional):
-    - MONGO_URI: MongoDB connection URI
-      (default: "mongodb://localhost:27017")
-    - DB_NAME: Database name (default: "task_manager")
-"""
-
 from functools import lru_cache
 import os
 from typing import Optional

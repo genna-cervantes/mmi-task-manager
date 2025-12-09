@@ -14,7 +14,6 @@ from .exceptions import (
 from .models import PriorityLevel, Status, Task
 from .services import TaskService
 
-
 @dataclass
 class TaskManager:
     
@@ -121,7 +120,7 @@ class TaskManager:
                 priority=priority,
                 due_date=due_date,
             )
-        except PyMongoError as exc:  # pragma: no cover - defensive
+        except PyMongoError as exc:
             raise TaskPersistenceError(f"Failed to list tasks: {exc}") from exc
 
     def update_task(

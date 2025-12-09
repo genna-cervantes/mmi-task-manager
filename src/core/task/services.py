@@ -13,7 +13,6 @@ class TaskService:
     Service layer for working with Task objects.
 
     This class assumes you pass in a configured MongoDB collection
-    (e.g. client["mmi"]["tasks"]).
     """
 
     def __init__(self, collection: Collection):

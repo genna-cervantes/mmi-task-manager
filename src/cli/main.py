@@ -52,13 +52,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    # Each subcommand should set a `func` attribute via `set_defaults`.
     command_func = getattr(args, "func", None)
     if command_func is None:
         parser.print_help()
         return 1
 
-    return int(command_func(args))  # Ensure we always return an int exit code.
+    return int(command_func(args)) 
 
 
 if __name__ == "__main__":
