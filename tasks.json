@@ -1,0 +1,25 @@
+[
+    {
+      "title": "Buy groceries",
+      "description": "Milk, eggs, bread, coffee",
+      "due_date": "2025-12-10",
+      "priority": "high"
+    },
+    {
+      "title": "Finish project report",
+      "description": "Draft summary and send to manager",
+      "due_date": "2025-12-15",
+      "priority": "medium"
+    },
+    {
+      "title": "Book dentist appointment",
+      "description": "Call clinic to schedule check-up",
+      "due_date": "2025-12-20",
+      "priority": "low"
+    },
+    {
+      "title": "Clean workspace",
+      "description": "Organize desk and cables",
+      "priority": "medium"
+    }
+  ]
